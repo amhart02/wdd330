@@ -1,3 +1,5 @@
+let wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 export function loadHeader() {
     const html = `
         <a href="index.html"><h1>WishTrip</h1></a>
@@ -14,4 +16,13 @@ export function loadFooter() {
     let footer = document.createElement("footer");
     footer.innerHTML = html;
     document.querySelector("body").insertAdjacentElement("beforeend", footer)
+}
+
+export function isInList(game) {
+    return wishList.some(g => g.id === game.id);
+}
+
+export function removeGame(game) {
+    wishList = wishList.filter(g => g.id !== game);
+    localStorage.setItem("wishlist", JSON.stringify(wishList));
 }

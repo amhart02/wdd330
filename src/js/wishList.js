@@ -1,5 +1,5 @@
 import { loadHeader, loadFooter } from "./utils.mjs"
-import { isInList } from './index.js';
+import { removeGame } from './utils.mjs';
 const wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
 
 function initWishList () {
@@ -32,10 +32,7 @@ function gameTemplate(game) {
     `;
 }
 
-function removeGame(game) {
-    isInList(game);
-    localStorage.setItem("wishlist", JSON.stringify(wishList));
-}
+
 
 
 loadFooter();

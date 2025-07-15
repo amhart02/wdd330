@@ -1,4 +1,4 @@
-import { loadHeader, loadFooter } from "./utils.mjs";
+import { loadHeader, loadFooter, isInList, removeGame } from "./utils.mjs";
 import { getGamesByGenre, getGameDetails } from "./api.mjs";
 import { genres } from './genres.mjs'
 
@@ -50,13 +50,9 @@ async function renderGame(game) {
     console.log(wishList);
 }
 
-export function isInList(game) {
-    return wishList.some(g => g.id === game.id);
-}
-
 function toggleGameInList(game) {
     if (isInList(game)) {
-        wishList = wishList.filter(g => g.id !== game.id);
+        removeGame();
     } else {
         wishList.push(game);
     }
