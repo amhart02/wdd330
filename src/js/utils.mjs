@@ -1,8 +1,6 @@
-let wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
-
 export function loadHeader() {
     const html = `
-        <a href="index.html"><h1>WishTrip</h1></a>
+        <a href="index.html"><h1>GameScape</h1></a>
         <a href="wishList.html">Wish List</a>`;
     let header = document.createElement("header");
     header.innerHTML = html;
@@ -11,18 +9,29 @@ export function loadHeader() {
 
 export function loadFooter() {
     const html = `
-        <p>Explore more. Dream bigger.</p>
-        <a href="https://github.com/amhart02"><img src="images/iconmonstr-github-1.svg" alt="gitHub Icon"/></a>`;
+        <p>Explore games by genre. Build your wishlist.</p>
+        <a href="https://github.com/amhart02"><img src="images/github-mark-white.png" alt="gitHub Icon"/></a>`;
     let footer = document.createElement("footer");
     footer.innerHTML = html;
     document.querySelector("body").insertAdjacentElement("beforeend", footer)
 }
 
-export function isInList(game) {
-    return wishList.some(g => g.id === game.id);
-}
+export function scrollToTop() {
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
 
-export function removeGame(game) {
-    wishList = wishList.filter(g => g.id !== game);
-    localStorage.setItem("wishlist", JSON.stringify(wishList));
+    window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    if (scrollPosition > 0 && scrollPosition + windowHeight < documentHeight - 1) {
+        scrollToTopBtn.style.display = 'flex';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }

@@ -1,11 +1,9 @@
-import { loadHeader, loadFooter, isInList, removeGame } from "./utils.mjs";
+import { loadHeader, loadFooter, scrollToTop } from "./utils.mjs";
 import { getGamesByGenre, getGameDetails } from "./api.mjs";
 import { genres } from './genres.mjs'
 
-const menu = document.getElementById("cityMenu");
-console.log(menu);
+const menu = document.getElementById("genreMenu");
 let wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
-
 
 function loadDropDownMenu (genres) {
     genres.forEach(genre => addMenuItem(genre));
@@ -18,26 +16,53 @@ function addMenuItem(genre) {
 
 async function renderGames(event) {
     const genre = event.target.value;
-
+    document.querySelector('.games').innerHTML = "";
     const result = await getGamesByGenre(genre);
     const games = result.results;
     games.forEach(game => renderGame(game));
 };
 
-async function renderGame(game) {
-    const content = document.createElement('div');
-    const gameDetails = await getGameDetails(game.slug);
-    content.innerHTML = `
+function renderDialog(game, gameDetails) {
+    const dialog = document.querySelector(".gameDialog");
+    const dialogContent = dialog.querySelector(".dialog-content");
+
+    dialogContent.innerHTML = `
+    <h2>${game.name}</h2>
+    <img src="${game.background_image}" alt="${game.name}"/>
+    <p>${gameDetails.description_raw}</p>
+    <h3>Rating: <span>${game.rating}</span></h3>
+    `;
+
+    const closeButton = dialog.querySelector("#closeButton")
+
+    if (!dialog.open) {
+        dialog.showModal();
+    }
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    })
+}
+
+function gameTemplate(game) {
+    return `
         <h2>${game.name}</h2>
         <img src="${game.background_image}" loading="lazy" alt="${game.name} Background Image"/>
-        <p>${gameDetails.description_raw}</p>
-        <svg class="heart" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-        <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/>
+        <h3 class="viewDetails">View Details</h3>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="heart" d="M19.3 5.71002C18.841 5.24601 18.2943 4.87797 17.6917 4.62731C17.0891 4.37666 16.4426 4.2484 15.79 4.25002C15.1373 4.2484 14.4909 4.37666 13.8883 4.62731C13.2857 4.87797 12.739 5.24601 12.28 5.71002L12 6.00002L11.72 5.72001C10.7917 4.79182 9.53273 4.27037 8.22 4.27037C6.90726 4.27037 5.64829 4.79182 4.72 5.72001C3.80386 6.65466 3.29071 7.91125 3.29071 9.22002C3.29071 10.5288 3.80386 11.7854 4.72 12.72L11.49 19.51C11.6306 19.6505 11.8212 19.7294 12.02 19.7294C12.2187 19.7294 12.4094 19.6505 12.55 19.51L19.32 12.72C20.2365 11.7823 20.7479 10.5221 20.7442 9.21092C20.7405 7.89973 20.2218 6.64248 19.3 5.71002Z"/>
         </svg>
     `;
+}
+
+async function renderGame(game) {
+    const content = document.createElement('div');
+    content.classList.add("gameCard")
+    const gameDetails = await getGameDetails(game.slug);
+    content.innerHTML = gameTemplate(game,gameDetails);
+
     const heart = content.querySelector(".heart");
-    const destinationContainer = document.querySelector(".destinations");
-    destinationContainer.insertAdjacentElement('afterbegin', content);
+    const gamesContainer = document.querySelector(".games");
+    gamesContainer.insertAdjacentElement('beforeend', content);
 
     if (isInList(game)) {
         heart.classList.add("filled");
@@ -47,12 +72,22 @@ async function renderGame(game) {
         heart.classList.toggle("filled");
     })
 
-    console.log(wishList);
+    const viewDetailsButton = content.querySelector(".viewDetails");
+    viewDetailsButton.addEventListener("click", () => renderDialog(game, gameDetails));
+}
+
+function isInList(game) {
+    return wishList.some(g => g.id === game.id);
+}
+
+function removeGame(game) {
+    wishList = wishList.filter(g => g.id !== game.id);
+    localStorage.setItem("wishlist", JSON.stringify(wishList));
 }
 
 function toggleGameInList(game) {
     if (isInList(game)) {
-        removeGame();
+        removeGame(game);
     } else {
         wishList.push(game);
     }
@@ -60,8 +95,12 @@ function toggleGameInList(game) {
     localStorage.setItem("wishlist", JSON.stringify(wishList));
 }
 
-loadHeader();
-loadFooter();
-loadDropDownMenu(genres);
+function init (genres) {
+    loadHeader();
+    loadFooter();
+    loadDropDownMenu(genres);
+    scrollToTop();
+}
 
+init(genres)
 menu.addEventListener("change", renderGames);
