@@ -3,6 +3,7 @@ import { getGamesByGenre, getGameDetails } from "./api.mjs";
 import { genres } from './genres.mjs'
 
 const menu = document.getElementById("cityMenu");
+console.log(menu);
 let wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
 
 
