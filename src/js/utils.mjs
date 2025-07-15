@@ -1,7 +1,7 @@
 export function loadHeader() {
     const html = `
         <a href="index.html"><h1>WishTrip</h1></a>
-        <a href="bucketList.html">Bucket List</a>`;
+        <a href="wishList.html">Wish List</a>`;
     let header = document.createElement("header");
     header.innerHTML = html;
     document.querySelector("body").insertAdjacentElement("afterbegin", header)
