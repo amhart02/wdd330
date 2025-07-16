@@ -36,6 +36,7 @@ a {
 
 .games {
     min-height: 37vh;
+    margin-top: 3rem;
 }
 
 .github-icon {
@@ -273,29 +274,31 @@ footer {
         flex-direction: row;
         align-items: center;
         h1 {
-            font-size: 6rem;
+            font-size: 5rem;
         }
         a:nth-of-type(2) {
-            font-size: 1.75em;
+            font-size: 1.25em;
             margin-top: 0.5rem;
         }
     }
     label {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
     #genreMenu {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
     .gameCard {
+        padding: 3rem;
+        margin: 2rem;
         h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
         svg {
-            width: 6rem;
+            width: 5rem;
         }
         h3 {
             margin: 2rem 10rem;
-            font-size: 1.75em;
+            font-size: 1.5em;
         }
         h5 {
             font-size: 1.5em;
@@ -321,10 +324,10 @@ footer {
     }
     footer {
         p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         }
         .github-icon {
-            width: 3.5rem;
+            width: 3rem;
         }
     }
     .scroll-to-top {
