@@ -10,7 +10,7 @@ export function loadHeader() {
 export function loadFooter() {
     const html = `
         <p>Explore games by genre. Build your wishlist.</p>
-        <a href="https://github.com/amhart02"><img src="images/github-mark-white.png" alt="gitHub Icon" width: 2.5rem height: auto/></a>`;
+        <a href="https://github.com/amhart02"><img src="images/github-mark-white.png" alt="gitHub Icon" class="github-icon"/></a>`;
     let footer = document.createElement("footer");
     footer.innerHTML = html;
     document.querySelector("body").insertAdjacentElement("beforeend", footer)

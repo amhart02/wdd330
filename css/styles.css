@@ -20,18 +20,17 @@ a {
   box-sizing: border-box;
 }
 
-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
 .hide {
   display: none;
 }
 
 .games {
   min-height: 37vh;
+}
+
+.github-icon {
+  width: 2.5rem;
+  height: auto;
 }
 
 header {
@@ -60,8 +59,9 @@ header a:nth-of-type(2):hover {
   background-color: yellow;
 }
 
-h1, label {
+label {
   font-size: 1.25rem;
+  display: block;
   text-align: center;
   margin: 1rem;
 }
@@ -98,6 +98,7 @@ h1, label {
 .gameCard img {
   width: 100%;
   height: auto;
+  object-fit: cover;
   border-radius: 6px;
   margin-bottom: 0.75rem;
   display: block;
@@ -267,7 +268,7 @@ footer p {
     font-size: 1.75em;
     margin-top: 0.5rem;
   }
-  h1, label {
+  label {
     font-size: 2rem;
   }
   #genreMenu {
@@ -307,9 +308,8 @@ footer p {
   footer p {
     font-size: 1.5rem;
   }
-  footer img {
+  footer .github-icon {
     width: 3.5rem;
-    height: auto;
   }
   .scroll-to-top {
     height: 4rem;
