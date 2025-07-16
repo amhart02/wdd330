@@ -75,6 +75,7 @@ h1 {
   background-color: #000;
   color: #fff;
   font-size: 1rem;
+  overflow-y: auto;
 }
 
 .gameCard {

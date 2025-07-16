@@ -6,5 +6,13 @@ export const genres = [
     "Casual",
     "Racing",
     "Fighting",
-    "Arcade"
+    "Arcade",
+    "Card",
+    "Puzzle",
+    "Sports",
+    "Platformer",
+    "Simulation",
+    "Strategy",
+    "Educational", 
+    "Family"
 ];
