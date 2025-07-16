@@ -57,24 +57,26 @@ header div {
 header div a:nth-of-type(1) {
   color: red;
   font-size: 1.5rem;
-  transition: color 0.5s ease;
+  transition: color 0.5s ease, border-color 0.5s ease;
   border: red solid 2px;
   border-radius: 6px;
   padding: 6px;
 }
 header div a:nth-of-type(1):hover {
   color: yellow;
+  border-color: yellow;
 }
 header div a:nth-of-type(2) {
   color: red;
   font-size: 1.5rem;
-  transition: color 0.5s ease;
+  transition: color 0.5s ease, border-color 0.5s ease;
   border: red solid 2px;
   border-radius: 6px;
   padding: 6px;
 }
 header div a:nth-of-type(2):hover {
   color: yellow;
+  border-color: yellow;
 }
 header div a:nth-of-type(2):hover path {
   fill: yellow;
@@ -103,11 +105,13 @@ label {
 #genreMenu {
   cursor: pointer;
   margin: 0 auto;
+  padding: 6px;
   display: block;
   background-color: #000;
   color: #fff;
   font-size: 1rem;
   overflow-y: auto;
+  border-radius: 6px;
 }
 
 .gameCard {
