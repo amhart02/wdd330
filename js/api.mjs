@@ -7,7 +7,6 @@ export async function getGamesByGenre (genre) {
     if (response.ok) 
     {
         data = await response.json();
-        console.log(data);
     } else throw new Error ("Response Not Ok");
     return data;
 }
@@ -17,7 +16,6 @@ export async function getGameDetails (gameSlug) {
     const response = await fetch (baseURL + `/${gameSlug}?key=${apiKey}`);
     if (response.ok) {
         data = await response.json();
-        console.log(data);
     } else throw new Error ("Response Not Ok");
     return data;
 }

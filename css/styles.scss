@@ -40,9 +40,13 @@ img {
     display: none;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
+// .wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 37vh;
+// }
+
+.games {
     min-height: 37vh;
 }
 
@@ -72,7 +76,7 @@ header {
     }
 }
 
-h1 {
+h1, label {
     font-size: 1.25rem;
     text-align: center;
     margin: 1rem;
@@ -239,10 +243,10 @@ footer {
     grid-gap: 1rem;
     align-items: center;
     justify-content: space-around;
-    img {
-        width: 2.5rem;
-        height: auto;
-    }
+    // img {
+    //     width: 2.5rem;
+    //     height: auto;
+    // }
     p {
         font-size: 1rem;
         font-family: $body-font;
@@ -271,8 +275,11 @@ footer {
 }
 
 @media (min-width: 768px) {
-    .wrapper {
-    min-height: 55vh;
+    // .wrapper {
+    // min-height: 55vh;
+    // }
+    .games {
+        min-height: 45vh;
     }
     header {
         flex-direction: row;
@@ -285,7 +292,7 @@ footer {
             margin-top: 0.5rem;
         }
     }
-    h1 {
+    h1, label {
         font-size: 2rem;
     }
     #genreMenu {
@@ -330,6 +337,7 @@ footer {
         }
         img {
             width: 3.5rem;
+            height: auto;
         }
     }
     .scroll-to-top {

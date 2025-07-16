@@ -30,9 +30,7 @@ img {
   display: none;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
+.games {
   min-height: 37vh;
 }
 
@@ -62,7 +60,7 @@ header a:nth-of-type(2):hover {
   background-color: yellow;
 }
 
-h1 {
+h1, label {
   font-size: 1.25rem;
   text-align: center;
   margin: 1rem;
@@ -229,10 +227,6 @@ footer {
   align-items: center;
   justify-content: space-around;
 }
-footer img {
-  width: 2.5rem;
-  height: auto;
-}
 footer p {
   font-size: 1rem;
   font-family: "Jura", sans-serif;
@@ -259,8 +253,8 @@ footer p {
 }
 
 @media (min-width: 768px) {
-  .wrapper {
-    min-height: 55vh;
+  .games {
+    min-height: 45vh;
   }
   header {
     flex-direction: row;
@@ -273,7 +267,7 @@ footer p {
     font-size: 1.75em;
     margin-top: 0.5rem;
   }
-  h1 {
+  h1, label {
     font-size: 2rem;
   }
   #genreMenu {
@@ -315,6 +309,7 @@ footer p {
   }
   footer img {
     width: 3.5rem;
+    height: auto;
   }
   .scroll-to-top {
     height: 4rem;
