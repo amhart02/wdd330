@@ -14,7 +14,6 @@ body {
     background-color: black;
     color: white;
     font-family: var(--body-font);
-    height: 100%;
 }
 
 main {
@@ -66,6 +65,10 @@ header {
         border-radius: 1rem;
         background-color: var(--primary-color);
         color: var(--black);
+        transition: background-color 0.5s ease;
+    }
+    a:nth-of-type(2):hover {
+        background-color: var(--secondary-color);
     }
 }
 
@@ -104,7 +107,7 @@ h1 {
         margin-bottom: 0.75rem;
         display: block;
     }
-    h3 {
+    h3, h5 {
         cursor: pointer;
         font-size: 1.5rem;
         font-weight: 700;
@@ -114,7 +117,11 @@ h1 {
         background-color: var(--primary-color);
         color: var(--black);
         padding: 0.5rem;
+        transition: background-color 0.5s ease;
     } 
+    h3:hover {
+        background-color: var(--secondary-color);
+    }
     svg {
         display: block;
         margin: 0.5rem auto;
@@ -146,37 +153,44 @@ h1 {
 }
 
 dialog {
-    display: flex;
+    max-height: none;
+    max-width: none;
+    position: fixed;
+    align-items: flex-start;
     background-color: var(--black);
     color: var(--white);
     text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+    width: calc(100vw - 2rem);  
+    height: calc(100vh - 2rem);
+    margin: 1rem;
     padding: 2rem;
+    z-index: 9999;
+    overflow: auto;
+    overflow-y: auto;
     p {
         font-size: 0.75rem;
-        line-height: 1rem;
+        line-height: 1.25rem;
         text-align: left;
         margin-bottom: 3rem;
     }
     h2 {
         font-size: 2rem;
-        margin-bottom: 2rem;
+        margin: 2rem 0;
     }
     #closeButton {
-        justify-self: end;
+        margin-left: 80%;
         background-color: var(--primary-color);
         color: var(--black);
+        border: none;
         border-radius: 50%;
         width: 2.5rem;
         height: 2.5rem;
         font-size: 1.5rem;
         cursor: pointer;
         transition: background-color 0.3s ease;
+    }
+    #closeButton:hover {
+        background-color: var(--secondary-color);
     }
     img {
         width: 100%;
