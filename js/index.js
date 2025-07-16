@@ -26,11 +26,13 @@ function renderDialog(game, gameDetails) {
     const dialog = document.querySelector(".gameDialog");
     const dialogContent = dialog.querySelector(".dialog-content");
 
+    const paragraphs = gameDetails.description_raw.split('\n').filter(paragraph => paragraph.trim() !== "").map(paragraph => `<p>${paragraph.trim()}</p>`).join("");
+
     dialogContent.innerHTML = `
     <h2>${game.name}</h2>
     <img src="${game.background_image}" alt="${game.name}"/>
-    <p>${gameDetails.description_raw}</p>
     <h3>Rating: <span>${game.rating}</span></h3>
+    ${paragraphs}
     `;
 
     const closeButton = dialog.querySelector("#closeButton")

@@ -5,6 +5,7 @@ $header-font: "Handjet", sans-serif;
 $body-font: "Jura", sans-serif;
 $primary-color: red;
 $secondary-color: yellow;
+$tertiary-color: rgb(94, 164, 255);
 $white: #fff;
 $black: #000;
 
@@ -77,6 +78,11 @@ h1 {
     margin: 1rem;
 }
 
+.noGames {
+    font-size: 1.25em;
+    text-align: center;
+}
+
 #genreMenu {
     cursor: pointer;
     margin: 0 auto;
@@ -88,7 +94,7 @@ h1 {
 }
 
 .gameCard {
-    padding: 0.75rem;
+    padding: 1rem;
     margin: 1.5rem;
     max-width: 100%;
     color: $white;
@@ -107,19 +113,37 @@ h1 {
         margin-bottom: 0.75rem;
         display: block;
     }
-    h3, h5 {
+    h3 {
         cursor: pointer;
         font-size: 1.5rem;
         font-weight: 700;
         margin-top: 3rem;
         border-radius: 6px;
         text-align: center;
-        background-color: $primary-color;
+        background-color: $tertiary-color;
         color: $black;
         padding: 0.5rem;
         transition: background-color 0.5s ease;
     } 
     h3:hover {
+        background-color: $secondary-color;
+    }
+    h5 {
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        border-radius: 6px;
+        background-color: $primary-color;
+        color: $black;
+        padding: 0.5rem;
+        transition: background-color 0.5s ease;
+        width: 30%;
+        text-align: center;
+    }
+    h5:hover {
         background-color: $secondary-color;
     }
     svg {
@@ -161,7 +185,7 @@ dialog {
     color: $white;
     text-align: center;
     width: calc(100vw - 2rem);  
-    height: calc(100vh - 2rem);
+    height: calc(100vh - 4rem);
     margin: 1rem;
     padding: 2rem;
     z-index: 9999;
@@ -171,7 +195,7 @@ dialog {
         font-size: 0.75rem;
         line-height: 1.25rem;
         text-align: left;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
     }
     h2 {
         font-size: 2rem;
@@ -186,6 +210,7 @@ dialog {
         width: 2.5rem;
         height: 2.5rem;
         font-size: 1.5rem;
+        font-weight: 700;
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
@@ -196,11 +221,12 @@ dialog {
         width: 100%;
         height: auto;
         border-radius: 6px;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         display: block;
     }
     h3 {
         font-size: 1.5em;
+        margin-bottom: 2rem;
     }
     span {
         color: $secondary-color;
@@ -245,9 +271,114 @@ footer {
 }
 
 @media (min-width: 768px) {
-
+    .wrapper {
+    min-height: 55vh;
+    }
+    header {
+        flex-direction: row;
+        align-items: center;
+        h1 {
+            font-size: 6rem;
+        }
+        a:nth-of-type(2) {
+            font-size: 1.75em;
+            margin-top: 0.5rem;
+        }
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    #genreMenu {
+        font-size: 1.5rem;
+    }
+    .gameCard {
+        h2 {
+            font-size: 2rem;
+        }
+        svg {
+            width: 6rem;
+        }
+        h3 {
+            margin: 2rem 10rem;
+            font-size: 1.75em;
+        }
+        h5 {
+            font-size: 1.5em;
+        }
+    }
+    dialog {
+        width: calc(100vw - 3rem);  
+        #closeButton {
+            width: 3.5rem;
+            height: 3.5rem;
+            font-size: 2rem;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+        h3 {
+            font-size: 2rem;
+        }
+        p {
+            font-size: 1em;
+        }
+    }
+    footer {
+        p {
+        font-size: 1.5rem;
+        }
+        img {
+            width: 3.5rem;
+        }
+    }
+    .scroll-to-top {
+        height: 4rem;
+        width: 4rem;
+    }
 }
 
 @media (min-width: 1024px) {
+    .games {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 2rem;
+    }
+    .gameCard {
+        margin: 1rem;
+        h3 {
+            margin: 2rem 6rem;
+        }
+        img {
+            max-height: 30vh;
+        }
+    }
+    dialog {
+        p {
+            font-size: 1.25rem;
+        }
+    }
+}
 
+@media (min-width: 1500px) {
+    header {
+        margin: 3rem 4rem;
+    }
+    .games {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .gameCard {
+        h2 {
+            font-size: 1.75rem;
+        }
+    }
+    dialog {
+        padding: 2rem 10rem;
+        h3 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.5em;
+        }
+    }
 }
