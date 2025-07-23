@@ -12,7 +12,6 @@ export const genres = [
     "Sports",
     "Platformer",
     "Simulation",
-    "Strategy",
     "Educational", 
     "Family"
 ];

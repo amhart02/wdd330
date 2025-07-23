@@ -1,8 +1,9 @@
 import { loadHeader, loadFooter, scrollToTop } from "./utils.mjs";
-import { getGamesByGenre, getGameDetails } from "./api.mjs";
+import { getGamesByGenre, getGameDetails, searchGames } from "./api.mjs";
 import { genres } from './genres.mjs'
 
 const menu = document.getElementById("genreMenu");
+const searchButton = document.querySelector('.searchButton');
 let wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
 
 function loadDropDownMenu (genres) {
@@ -15,12 +16,42 @@ function addMenuItem(genre) {
 }
 
 async function renderGames(event) {
+    let loadingScreen = document.querySelector('.loading-screen');
+    let gamesSection =  document.querySelector('.games');
     const genre = event.target.value;
     document.querySelector('.games').innerHTML = "";
-    const result = await getGamesByGenre(genre);
-    const games = result.results;
-    games.forEach(game => renderGame(game));
+    try {
+        loadingScreen.style.display = 'block';
+        const result = await getGamesByGenre(genre);
+        const games = result.results;
+        games.forEach(game => renderGame(game));
+    } catch (error) {
+        console.log(error);
+    } finally {
+        loadingScreen.style.display = 'none';
+        gamesSection.style.display= 'grid'
+    }
 };
+
+async function renderGamesFromSearch(event) {
+    const searchBar = document.querySelector('.searchBar')
+    let loadingScreen = document.querySelector('.loading-screen');
+    let gamesSection =  document.querySelector('.games');
+    const query = searchBar.value;
+    console.log(query);
+    document.querySelector('.games').innerHTML = "";
+    try {
+        loadingScreen.style.display = 'block';
+        const result = await searchGames(query);
+        const games = result.results;
+        games.forEach(game => renderGame(game));
+    } catch (error) {
+        console.log(error);
+    } finally {
+        loadingScreen.style.display = 'none';
+        gamesSection.style.display= 'grid';
+    }
+}
 
 function renderDialog(game, gameDetails) {
     const dialog = document.querySelector(".gameDialog");
@@ -106,3 +137,4 @@ function init (genres) {
 
 init(genres)
 menu.addEventListener("change", renderGames);
+searchButton.addEventListener("click", renderGamesFromSearch);

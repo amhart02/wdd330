@@ -9,14 +9,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
+
 </head>
 <body>
     <div class="wrapper">
     <main>
-        <label for="genreMenu">Choose a video game genre!</label>
-        <select name="genreMenu" id="genreMenu">
-            <option value="">Select a genre</option>
-        </select>
+        <section class="userSelect">
+            <div class="searchDiv">
+                <input class="searchBar" label="search-button" type="text">
+                <button class="searchButton">Search</button>
+            </div>
+            <div class="dropDown">
+                <select name="genreMenu" id="genreMenu">
+                    <option value="">Select a genre</option>
+                </select>
+            </div>
+        </section>
+        
+        
+        <section class="loading-screen" style="display: none;">
+            <p>Loading games...</p>
+        </section>
+
         <section class="games">
 
         </section>

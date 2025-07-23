@@ -13,9 +13,19 @@ export async function getGamesByGenre (genre) {
 
 export async function getGameDetails (gameSlug) {
     let data = {};
-    const response = await fetch (baseURL + `/${gameSlug}?key=${apiKey}`);
+    const response = await fetch(baseURL + `/${gameSlug}?key=${apiKey}`);
     if (response.ok) {
         data = await response.json();
     } else throw new Error ("Response Not Ok");
+    return data;
+}
+
+export async function searchGames (query) {
+    let data = {};
+    const response = await fetch(baseURL + `?key=${apiKey}&search=${encodeURIComponent(query)}&page_size=30`);
+    console.log(response);
+    if (response.ok) {
+        data = await response.json();
+    } else throw new Error ('Response Not Ok');
     return data;
 }

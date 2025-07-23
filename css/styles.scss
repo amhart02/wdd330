@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
-
 $header-font: "Handjet", sans-serif;
 $body-font: "Jura", sans-serif;
-$primary-color: red;
+$primary-color: rgb(255, 0, 0);
 $secondary-color: yellow;
 $tertiary-color: rgb(94, 164, 255);
 $white: #fff;
@@ -42,6 +39,17 @@ a {
 .github-icon {
     width: 2.5rem;
     height: auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.loading-screen {
+    margin: 5rem;
+    text-align: center;
+    font-size: 2rem;
 }
 
 header {
@@ -97,6 +105,33 @@ header {
             transition: fill 0.5s ease;
         }
         }
+    }
+}
+
+.userSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searchDiv {
+    input.searchBar {
+        background-color: $black;
+        color: $white;
+        border: $white solid 1px;
+        border-radius: 2px;
+        height: 1.5rem;
+        // why no worky?
+        // &:focus {
+        //     border-color: $secondary-color;
+        // }
+    }
+    button {
+        background-color: $black;
+        color: $white;
+        font-family: $body-font;
+        height: 1.5rem;
     }
 }
 
@@ -316,6 +351,14 @@ footer {
     label {
         font-size: 1.75rem;
     }
+    .searchDiv {
+        input.searchBar {
+            height: 2rem;
+        }
+        button {
+            height: 2rem;
+        }
+    }
     #genreMenu {
         font-size: 1.25rem;
     }
@@ -369,6 +412,9 @@ footer {
 }
 
 @media (min-width: 1024px) {
+    .searchBar {
+        width: 300px;
+    }
     .games {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -393,6 +439,9 @@ footer {
 @media (min-width: 1500px) {
     header {
         margin: 3rem 4rem;
+    }
+    .searchBar {
+        width: 500px;
     }
     .games {
         grid-template-columns: repeat(3, 1fr);
